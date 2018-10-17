@@ -36,7 +36,7 @@ func GetSlideShow() ([]GetSlideShowResponse, error) {
 		return nil, err
 	}
 	return gssr, nil
-
+}
 func GetListByCateId(categoryid int, start int) ([]GetListByCateIdResponse, error) {
 	Gl := []GetListByCateIdResponse{}
 	query := "select id,title,imgsrc,detail from article where category_id=? and isdelete=1 limit ?, 10 ;"
