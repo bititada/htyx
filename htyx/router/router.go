@@ -37,7 +37,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 
 	g.POST("/like", middleware.AuthMiddleware(), user.ChangeLikeStatus)
 	g.POST("/likecomment", middleware.AuthMiddleware(), user.ChangeCommentLikeStatus)
-
+	g.GET("/article/slideshow", article.GetSlideShow)
 	g.GET("/category/:cltype", category.GetCategory)
 	g.GET("/article/list/:categoryid/:start", article.GetListByCateId)
 	g.GET("/audio/list/:categoryid/:start", audio.GetListByCateId)

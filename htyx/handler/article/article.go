@@ -9,6 +9,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func GetSlideShow(c *gin.Context) {
+	data, err := articlemodel.GetSlideShow()
+	handler.SendResponse(c, err, data)
+}
 func GetListByCateId(c *gin.Context) {
 
 	categoryid, err1 := strconv.Atoi(c.Param("categoryid"))

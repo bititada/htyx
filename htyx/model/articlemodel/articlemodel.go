@@ -4,6 +4,11 @@ import (
 	. "htyx/model"
 )
 
+type GetSlideShowResponse struct {
+	Id     uint   `json:"id"`
+	Imgsrc string `json:"imgsrc"`
+}
+
 type GetListByCateIdResponse struct {
 	Id     uint   `json:"id"`
 	Title  string `json:"title"`
@@ -22,6 +27,15 @@ type GetOneResponse struct {
 	Likenum      uint   `json:"likenum"`
 	Likestatus   uint8  `json:"likestatus" db:"like_status"`
 }
+
+func GetSlideShow() ([]GetSlideShowResponse, error) {
+	gssr := []GetSlideShowResponse{}
+	query := "select id,imgsrc from article where isslideshow=1 and isdelete=1 "
+	err := DB.Self.Select(&gssr, query)
+	if err != nil {
+		return nil, err
+	}
+	return gssr, nil
 
 func GetListByCateId(categoryid int, start int) ([]GetListByCateIdResponse, error) {
 	Gl := []GetListByCateIdResponse{}
